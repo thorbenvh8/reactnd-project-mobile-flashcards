@@ -8,6 +8,7 @@ import { Constants } from 'expo'
 import reducer from './reducers'
 import { purple, white } from './utils/colors'
 import Decks from './components/Decks'
+import DeckDetail from './components/DeckDetail'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -49,6 +50,15 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  }
 })
 
 export default class App extends React.Component {

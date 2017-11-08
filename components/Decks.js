@@ -18,7 +18,12 @@ class Decks extends Component {
     return <View>
       <TouchableOpacity
         style={[styles.deck, styles.center]}
-        onPress={() => console.log("pressed deck: " + item.title)}
+        onPress={() => this.props.navigation.navigate(
+          'DeckDetail',
+          {
+            title: item.title
+          }
+        )}
       >
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.cards}>{item.questions.length} card{item.questions.length !== 1 && "s"}</Text>
@@ -67,30 +72,6 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps (decks) {
-  var decks = {
-    React: {
-      title: 'React',
-      questions: [
-        {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
-        }
-      ]
-    },
-    JavaScript: {
-      title: 'JavaScript',
-      questions: [
-        {
-          question: 'What is a closure?',
-          answer: 'The combination of a function and the lexical environment within which that function was declared.'
-        }
-      ]
-    }
-  }
   return {
     decks: Object.keys(decks).map((key) => decks[key])
   }
