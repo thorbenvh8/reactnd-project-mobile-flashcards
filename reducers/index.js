@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS } from '../actions'
+import { RECEIVE_DECKS, ADD_DECK } from '../actions'
 
 const initialState = {
   React: {
@@ -31,6 +31,11 @@ function entries (state = initialState, action) {
       return {
         ...state,
         ...action.decks,
+      }
+    case ADD_DECK :
+      return {
+        ...state,
+        ...action.deck,
       }
     default :
       return state

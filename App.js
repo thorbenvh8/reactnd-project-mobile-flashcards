@@ -1,13 +1,14 @@
 import React from 'react';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
+import { Text, View, Platform, StatusBar } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialCommunityIcons, EvilIcons } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import reducer from './reducers'
 import { purple, white } from './utils/colors'
 import Decks from './components/Decks'
+import NewDeck from './components/NewDeck'
 import DeckDetail from './components/DeckDetail'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -26,6 +27,13 @@ const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-outline' size={30} color={tintColor} />
     },
   },
+  NewDeck: {
+    screen: NewDeck,
+    navigationOptions: {
+      tabBarLabel: 'New Deck',
+      tabBarIcon: ({ tintColor }) => <EvilIcons name='plus' size={30} color={tintColor} />
+    },
+  }
 }, {
   navigationOptions: {
     header: null
@@ -73,12 +81,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
