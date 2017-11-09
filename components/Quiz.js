@@ -55,6 +55,13 @@ class Quiz extends Component {
     navigation.dispatch(NavigationActions.back())
   }
 
+  restart = () => {
+    this.setState({
+      correct: 0,
+      incorrect: 0,
+    })
+  }
+
   render() {
     const { showAnswer, correct, incorrect } = this.state
     const { questions } = this.props
@@ -64,8 +71,11 @@ class Quiz extends Component {
       return (
         <View style={[styles.center, styles.container]}>
           <Text style={styles.question}>You scored {Math.round(correct/questions.length*100)}% correct!</Text>
+          <TouchableOpacity style={styles.buttonRestart} onPress={this.restart}>
+            <Text style={styles.buttonTextRestart}>Restart Quiz</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.buttonBack} onPress={this.back}>
-            <Text style={styles.buttonTextBack}>Back</Text>
+            <Text style={styles.buttonTextBack}>Back to Deck</Text>
           </TouchableOpacity>
         </View>
       )
@@ -151,7 +161,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: white,
   },
-  buttonBack: {
+  buttonRestart: {
     width: '80%',
     borderRadius: 10,
     padding: 20,
@@ -159,9 +169,20 @@ const styles = StyleSheet.create({
     backgroundColor: black,
     marginTop: 10,
   },
-  buttonTextBack: {
+  buttonTextRestart: {
     fontSize: 20,
     color: white,
+  },
+  buttonBack: {
+    width: '80%',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+    borderWidth: 2,
+    marginTop: 10,
+  },
+  buttonTextBack: {
+    fontSize: 20,
   },
 })
 
