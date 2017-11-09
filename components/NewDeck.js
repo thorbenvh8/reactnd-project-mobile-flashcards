@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native'
 import { connect } from 'react-redux'
+import * as API from '../utils/api'
 import { white, gray, black } from '../utils/colors'
 import { saveDeckTitle } from '../actions'
 
@@ -19,17 +20,21 @@ class NewDeck extends Component {
     const { saveDeckTitle, navigation } = this.props
     const { title } = this.state
 
-    saveDeckTitle({title})
-    navigation.navigate(
-      'DeckDetail',
-      {
-        title
-      }
-    )
+    API.saveDeckTitle({title})
+      .then(() => {
+        saveDeckTitle({title})
 
-    this.setState({
-      title: '',
-    })
+        navigation.navigate(
+          'DeckDetail',
+          {
+            title
+          }
+        )
+
+        this.setState({
+          title: ''
+        })
+      })
   }
 
   render() {

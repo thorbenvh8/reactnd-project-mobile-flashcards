@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
+import * as API from '../utils/api'
 import { white, gray, black } from '../utils/colors'
 import { addCard } from '../actions'
 
@@ -33,16 +34,20 @@ class AddCard extends Component {
   handleSubmit = () => {
     const { title, addCard, navigation } = this.props
     const { question, answer } = this.state
-
-    addCard({
+    const deck = {
       title,
       card: {
         question,
         answer
       }
-    })
+    }
 
-    navigation.dispatch(NavigationActions.back())
+    API.addCardToDeck(deck)
+      .then(() => {
+        addCard(deck)
+
+        navigation.dispatch(NavigationActions.back())
+      })
   }
 
   render() {

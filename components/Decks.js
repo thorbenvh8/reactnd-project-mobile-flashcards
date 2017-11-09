@@ -11,7 +11,6 @@ class Decks extends Component {
 
     API.getDecks()
       .then((decks) => receiveDecks({decks}))
-      .then(() => this.setState(() => ({ready: true})))
   }
 
   renderDeck = ({ item }) => {
