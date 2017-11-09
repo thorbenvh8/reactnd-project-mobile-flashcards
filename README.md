@@ -4,20 +4,20 @@ User can create a deck and add a cards (question and answer) to it. Then quiz th
 (App is only tested on iPhone with Expo app)
 
 ## Decks View
-![decks](assets/decks.jpg)
+![decks](assets/decks.jpg =300x)
 
 ## New Deck View
-![decks](assets/newDeck.jpg)
+![newDeck](assets/newDeck.jpg =300x)
 
 ## Deck Detail View
-![decks](assets/deckDetail.jpg)
+![deckDetail](assets/deckDetail.jpg =300x)
 
 ## Add Card View
-![decks](assets/addCard.jpg)
+![addCard](assets/addCard.jpg =300x)
 
 ## Quiz View
-![decks](assets/quiz.jpg)
-![decks](assets/quizResult.jpg)
+![quiz](assets/quiz.jpg =300x)
+![quizResult](assets/quizResult.jpg =300x)
 
 ## Try out
 
