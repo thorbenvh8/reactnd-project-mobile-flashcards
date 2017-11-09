@@ -11,13 +11,24 @@ class DeckDetail extends Component {
     }
   }
 
+  onAddCardPress = () => {
+    const { title, navigation } = this.props
+
+    navigation.navigate(
+      'AddCard',
+      {
+        title
+      }
+    )
+  }
+
   render() {
     const { title, questions } = this.props
     return (
       <View style={[styles.deck, styles.center]}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.cards}>{questions.length} card{questions.length !== 1 && "s"}</Text>
-        <TouchableOpacity style={styles.buttonAddCard} onPress={() => console.log("Pressed Add Card")}>
+        <TouchableOpacity style={styles.buttonAddCard} onPress={this.onAddCardPress}>
           <Text style={styles.buttonTextAddCard}>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonStartQuiz} onPress={() => console.log("Pressed Start Quiz")}>

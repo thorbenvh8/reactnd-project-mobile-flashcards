@@ -10,6 +10,7 @@ import { purple, white } from './utils/colors'
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import DeckDetail from './components/DeckDetail'
+import AddCard from './components/AddCard'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -66,7 +67,16 @@ const MainNavigator = StackNavigator({
         backgroundColor: purple,
       }
     }
-  }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
 })
 
 export default class App extends React.Component {

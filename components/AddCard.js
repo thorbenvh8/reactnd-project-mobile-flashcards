@@ -1,47 +1,69 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { white, gray, black } from '../utils/colors'
-import { saveDeckTitle } from '../actions'
+import { addCard } from '../actions'
 
-class NewDeck extends Component {
-  state = {
-    title: '',
+class AddCard extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { title } = navigation.state.params
+    return {
+      title: "Add Card to " + title
+    }
   }
 
-  handleTitleChange = (title) => {
+  state = {
+    question: '',
+    answer: '',
+  }
+
+  handleQuestionChange = (question) => {
     this.setState({
-      title
+      question
+    })
+  }
+
+  handleAnswerChange = (answer) => {
+    this.setState({
+      answer
     })
   }
 
   handleSubmit = () => {
-    const { saveDeckTitle, navigation } = this.props
-    const { title } = this.state
+    const { title, addCard, navigation } = this.props
+    const { question, answer } = this.state
 
-    saveDeckTitle({title})
-    navigation.navigate(
-      'DeckDetail',
-      {
-        title
+    addCard({
+      title,
+      card: {
+        question,
+        answer
       }
-    )
-
-    this.setState({
-      title: '',
     })
+
+    navigation.dispatch(NavigationActions.back())
   }
 
   render() {
-    const { title } = this.state
+    const { question, answer } = this.state
     return (
       <View style={[styles.center, styles.container]}>
-        <Text style={styles.question}>What is the title of your new deck?</Text>
         <TextInput
-          value={title}
+          value={question}
           style={styles.input}
-          placeholder="Title"
-          onChangeText={this.handleTitleChange}
+          placeholder="Question"
+          multiline={true}
+          numberOfLines = {3}
+          onChangeText={this.handleQuestionChange}
+        />
+        <TextInput
+          value={answer}
+          style={styles.input}
+          placeholder="Answer"
+          multiline={true}
+          numberOfLines = {3}
+          onChangeText={this.handleAnswerChange}
         />
         <TouchableOpacity style={styles.buttonSubmit} onPress={this.handleSubmit}>
           <Text style={styles.buttonTextSubmit}>Submit</Text>
@@ -60,10 +82,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     backgroundColor: white,
-  },
-  question: {
-    fontSize: 30,
-    fontWeight: 'bold',
   },
   input: {
     height: 60,
@@ -88,16 +106,18 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps (state, { navigation }) {
-  return {}
+  return {
+    title: navigation.state.params.title
+  }
 }
 
 function mapDispatchToProps (dispatch, { navigation }) {
   return {
-    saveDeckTitle: (data) => dispatch(saveDeckTitle(data))
+    addCard: (data) => dispatch(addCard(data))
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NewDeck)
+)(AddCard)

@@ -10,7 +10,7 @@ class Decks extends Component {
     const { receiveDecks } = this.props
 
     API.getDecks()
-      .then((decks) => receiveDecks(decks))
+      .then((decks) => receiveDecks({decks}))
       .then(() => this.setState(() => ({ready: true})))
   }
 
