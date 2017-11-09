@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     padding: 10,
+    fontSize: 15,
   },
   buttonSubmit: {
     width: '80%',

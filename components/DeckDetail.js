@@ -22,6 +22,17 @@ class DeckDetail extends Component {
     )
   }
 
+  onStartQuizPress = () => {
+    const { title, navigation } = this.props
+
+    navigation.navigate(
+      'Quiz',
+      {
+        title
+      }
+    )
+  }
+
   render() {
     const { title, questions } = this.props
     return (
@@ -31,7 +42,7 @@ class DeckDetail extends Component {
         <TouchableOpacity style={styles.buttonAddCard} onPress={this.onAddCardPress}>
           <Text style={styles.buttonTextAddCard}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStartQuiz} onPress={() => console.log("Pressed Start Quiz")}>
+        <TouchableOpacity style={styles.buttonStartQuiz} onPress={this.onStartQuizPress}>
           <Text style={styles.buttonTextStartQuiz}>Start Quiz</Text>
         </TouchableOpacity>
       </View>
