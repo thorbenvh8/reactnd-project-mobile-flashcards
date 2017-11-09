@@ -5,6 +5,7 @@ import { Text, View, Platform, StatusBar } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons, EvilIcons } from '@expo/vector-icons'
 import { Constants } from 'expo'
+import { setLocalNotification } from './utils/notification'
 import reducer from './reducers'
 import { black, white } from './utils/colors'
 import Decks from './components/Decks'
@@ -90,6 +91,10 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer)}>
